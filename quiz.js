@@ -204,7 +204,7 @@ fetch('q-and-a.json')
   })
   .then(data => {
     if (!Array.isArray(data) || !data[0].question || !data[0].answers) throw new Error('Ungültiges JSON-Format');
-    quizData = data;
+    quizData = shuffleArray(data);
     quizLoaded = true;
     current = 0;
     userAnswers = [];
