@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", function() {
+
 // Darkmode Toggle
 const darkToggle = document.getElementById('darkToggle');
 function setTheme(dark) {
@@ -211,3 +213,5 @@ fetch('q-and-a.json')
   .catch(err => {
     showError("Fehler beim Laden der Quiz-Daten: " + (err.message || err));
   });
+
+});
