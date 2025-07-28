@@ -140,11 +140,12 @@ h1 {
   min-height: 38px;
 }
 .answer input[type="radio"] {
-  accent-color: var(--main-accent);
+  /* accent-color: var(--main-accent);
   width: 1.1em;
   height: 1.1em;
   margin-right: 7px;
-  cursor: pointer;
+  cursor: pointer; */
+  display: none;
 }
 .answer.selected,
 .answer:hover {
