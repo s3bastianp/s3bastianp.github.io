@@ -185,7 +185,13 @@
     }
     .download-btn {
       background: linear-gradient(90deg, #357e4b 70%, #5ba96e 100%);
-      margin-top: 30px;
+      margin-top: 20px;
+      margin-bottom: 0;
+    }
+    .restart-btn {
+      background: linear-gradient(90deg, #476fa9 70%, #5f97ea 100%);
+      margin-top: 14px;
+      margin-bottom: 6px;
     }
     .btn-icon { margin-right: 6px; }
     .feedback {
@@ -214,7 +220,7 @@
     @media (max-width: 600px) {
       .container { max-width: 98vw; padding: 13px 3vw 17px 3vw;}
       h1 { font-size: 1.27rem;}
-      .btn, .download-btn { padding: 13px 2vw;}
+      .btn, .download-btn, .restart-btn { padding: 13px 2vw;}
     }
   </style>
 </head>
@@ -226,10 +232,11 @@
     <div class="progressbar"><div id="progressbar-inner"></div></div>
     <div id="quiz"></div>
     <button id="okBtn" class="btn" disabled><span class="btn-icon">✅</span>OK</button>
-    <button id="nextBtn" class="btn" disabled style="display:none;"><span class="btn-icon">➡️</span>Nächste Frage</button>
+    <button id="nextBtn" class="btn" disabled style="display:none;"><span class="btn-icon">➡️</span><span id="nextBtnText">Nächste Frage</span></button>
     <div id="feedback" class="feedback"></div>
     <div id="result" class="result"></div>
     <button id="downloadLog" class="btn download-btn" style="display:none;">Antwort-Log herunterladen</button>
+    <button id="restartBtn" class="btn restart-btn" style="display:none;">Quiz neu starten</button>
   </div>
   <script>
     // Darkmode Toggle
@@ -308,7 +315,6 @@
     let hasAnswered = false;
     let shuffledAnswers = [];
 
-    // Fisher-Yates Shuffle
     function shuffleArray(array) {
       let arr = array.slice();
       for (let i = arr.length - 1; i > 0; i--) {
@@ -343,13 +349,23 @@
       html += `</div>`;
       quiz.innerHTML = html;
 
-      // Button/Feedback Zustand
+      // Buttons/Feedback Zustand
       document.getElementById('okBtn').disabled = true;
       document.getElementById('okBtn').style.display = '';
       document.getElementById('nextBtn').disabled = true;
       document.getElementById('nextBtn').style.display = 'none';
       document.getElementById('feedback').textContent = "";
       document.getElementById('result').textContent = "";
+      document.getElementById('downloadLog').style.display = 'none';
+      document.getElementById('restartBtn').style.display = 'none';
+
+      // Letzte Frage? Button-Text ändern
+      const nextBtnText = document.getElementById('nextBtnText');
+      if (current === quizData.length - 1) {
+        nextBtnText.textContent = "Zum Ergebnis";
+      } else {
+        nextBtnText.textContent = "Nächste Frage";
+      }
 
       // Auswahl markieren
       document.querySelectorAll('input[name="answer"]').forEach(input => {
@@ -417,8 +433,9 @@
       document.getElementById('result').innerHTML =
         `<div class="trophy">🏆</div>Quiz beendet!<br>Du hast <b>${correctCount}</b> von <b>${quizData.length}</b> Fragen richtig beantwortet.`;
 
-      // Download-Button zeigen
+      // Download- und Restart-Button zeigen
       document.getElementById('downloadLog').style.display = '';
+      document.getElementById('restartBtn').style.display = '';
       document.getElementById('nextBtn').style.display = 'none';
       document.getElementById('okBtn').style.display = 'none';
       document.getElementById('feedback').textContent = "";
@@ -441,6 +458,12 @@
       link.click();
 
       URL.revokeObjectURL(url);
+    });
+
+    document.getElementById('restartBtn').addEventListener('click', () => {
+      current = 0;
+      userAnswers = [];
+      showQuestion();
     });
 
     // Start
