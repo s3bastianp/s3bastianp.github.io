@@ -1,0 +1,515 @@
+[
+  {
+    "id": 174,
+    "question": "Welche der folgenden Arten gehören zur Ordnung der Nagetiere?",
+    "answers": [
+      { "text": "Feldhase, Igel", "isCorrect": false },
+      { "text": "Bisam, Biber", "isCorrect": true },
+      { "text": "Wildkaninchen, Reh", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 175,
+    "question": "Zu welcher Familie gehört der Dachs?",
+    "answers": [
+      { "text": "Kleinbären", "isCorrect": false },
+      { "text": "Hundeartige", "isCorrect": false },
+      { "text": "Marderartige", "isCorrect": true }
+    ]
+  },
+  {
+    "id": 176,
+    "question": "Welche der aufgeführten Wildarten gehören zu den Cerviden?",
+    "answers": [
+      { "text": "Rehwild, Rotwild", "isCorrect": true },
+      { "text": "Damwild, Steinwild", "isCorrect": false },
+      { "text": "Sikawild, Muffelwild", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 177,
+    "question": "Welche der genannten Teile gehören zum Wiederkäuermagen?",
+    "answers": [
+      { "text": "Muskelmagen, Weidsack", "isCorrect": false },
+      { "text": "Kropf, Netzmagen", "isCorrect": false },
+      { "text": "Blättermagen, Pansen", "isCorrect": true }
+    ]
+  },
+  {
+    "id": 178,
+    "question": "Welche Tierarten haben einen Pansen?",
+    "answers": [
+      { "text": "Rotwild und Muffelwild", "isCorrect": true },
+      { "text": "Rehwild und Hase", "isCorrect": false },
+      { "text": "Damwild und Enten", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 179,
+    "question": "Was sind Grandeln?",
+    "answers": [
+      { "text": "Die Eckzähne im Oberkiefer des Rotwildes", "isCorrect": true },
+      { "text": "Die Schneidezähne im Oberkiefer des Rotwildes", "isCorrect": false },
+      { "text": "Die Eckzähne im Unterkiefer des Rotwildes", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 180,
+    "question": "Wie viele Schneidezähne hat das Rotwild im Oberkiefer?",
+    "answers": [
+      { "text": "Zwei", "isCorrect": false },
+      { "text": "Vier", "isCorrect": false },
+      { "text": "Keine", "isCorrect": true }
+    ]
+  },
+  {
+    "id": 181,
+    "question": "In welchen Monaten werfen Rothirsche i.d.R. ihr Geweih ab?",
+    "answers": [
+      { "text": "Februar bis April", "isCorrect": true },
+      { "text": "September bis November", "isCorrect": false },
+      { "text": "April bis Juni", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 182,
+    "question": "Was versteht man unter den Begriffen Boviden und Cerviden?",
+    "answers": [
+      { "text": "Allesfresser und Wiederkäuer", "isCorrect": false },
+      { "text": "Hornträger und Geweihträger", "isCorrect": true },
+      { "text": "Geweihträger und Nascher", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 183,
+    "question": "Welchen Schmalspießer sollte der Jäger vorrangig erlegen?",
+    "answers": [
+      { "text": "Schmalspießer mit geringem Körpergewicht", "isCorrect": true },
+      { "text": "Schmalspießer mit Endenbildung", "isCorrect": false },
+      { "text": "Schmalspießer mit Spießlängen über Lauscherhöhe", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 184,
+    "question": "Welchen mittelalten Rothirsch sollte der Jäger nicht erlegen?",
+    "answers": [
+      { "text": "Schwache Rothirsche mit beidseitiger Gabel im Geweih", "isCorrect": false },
+      { "text": "Schwache Rothirsche mit beidseitigem Spieß", "isCorrect": false },
+      { "text": "Körperlich starke Rothirsche mit beidseitiger Krone im Geweih", "isCorrect": true }
+    ]
+  },
+  {
+    "id": 185,
+    "question": "In welchen Monaten befindet sich der Rothirsch in der Feistzeit?",
+    "answers": [
+      { "text": "Im Mai/Juni", "isCorrect": false },
+      { "text": "Im Juli/August", "isCorrect": true },
+      { "text": "Im September/Oktober", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 186,
+    "question": "Wer führt in der Regel ein Rotwildrudel, bestehend aus Alttieren, Schmaltieren, Kälbern und geringen Hirschen an?",
+    "answers": [
+      { "text": "Ein Gelttier", "isCorrect": false },
+      { "text": "Ein Alttier mit Kalb", "isCorrect": true },
+      { "text": "Ein geringer Hirsch", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 187,
+    "question": "Wie viele Kälber setzt ein Rotalttier in der Regel jährlich?",
+    "answers": [
+      { "text": "Eins", "isCorrect": true },
+      { "text": "Zwei", "isCorrect": false },
+      { "text": "Drei", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 188,
+    "question": "Wie nennt man einen Rothirsch mit Aug-, Eis-, Mittelspross und Gabel?",
+    "answers": [
+      { "text": "Eissprossenzehner", "isCorrect": true },
+      { "text": "Kronenzehner", "isCorrect": false },
+      { "text": "Mittelsprossenzehner", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 189,
+    "question": "Wann ist im Normalfall Brunftzeit beim Rotwild?",
+    "answers": [
+      { "text": "Juli/August", "isCorrect": false },
+      { "text": "September/Oktober", "isCorrect": true },
+      { "text": "Oktober/November", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 190,
+    "question": "Wann ist im Normalfall Brunftzeit beim Damwild?",
+    "answers": [
+      { "text": "Juli/August", "isCorrect": false },
+      { "text": "Oktober/November", "isCorrect": true },
+      { "text": "Februar/März", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 191,
+    "question": "Wann wirft der Damhirsch sein Geweih ab?",
+    "answers": [
+      { "text": "Im Februar", "isCorrect": false },
+      { "text": "Im April", "isCorrect": true },
+      { "text": "Im September", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 192,
+    "question": "Woran erkennt man die Trittsiegel des Damwildes?",
+    "answers": [
+      { "text": "Das Geäfter ist immer zu erkennen", "isCorrect": false },
+      { "text": "Die Ballenlänge nimmt gut die Hälfte des Trittsiegels ein", "isCorrect": true },
+      { "text": "Die Trittsiegel sind von denen des Rotwildes fast gar nicht zu unterscheiden", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 193,
+    "question": "Welches Geweih trägt in der Regel ein Damhirsch vom 2. Kopf?",
+    "answers": [
+      { "text": "Längere Spieße als die vom 1. Kopf", "isCorrect": false },
+      { "text": "Stangen mit Aug- und Mittelsprosse und leicht angedeutetem Schaufelansatz", "isCorrect": true },
+      { "text": "Ein starkes Geweih mit großer Schaufel", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 194,
+    "question": "Welche Geweihformen sind beim Damwild unerwünscht?",
+    "answers": [
+      { "text": "Geweihe ohne Schaufelbildung oder mit O-förmigen oder V-förmigen Schlitzen", "isCorrect": true },
+      { "text": "Geweihe mit geschlossener Schaufel", "isCorrect": false },
+      { "text": "Geweihe mit Aug- und Mittelsprosse", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 195,
+    "question": "Suhlt das Damwild ebenso im Schlamm wie Rot- und Schwarzwild?",
+    "answers": [
+      { "text": "Ja, regelmäßig", "isCorrect": false },
+      { "text": "Nein, nie", "isCorrect": true },
+      { "text": "Ja, nur in der Brunft", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 196,
+    "question": "Wie nennt man den Brunftschrei des Damwildes?",
+    "answers": [
+      { "text": "Schnorcheln", "isCorrect": true },
+      { "text": "Mahnen", "isCorrect": false },
+      { "text": "Schrecken", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 197,
+    "question": "Wie unterscheidet sich Damwild und Rotwild in der Färbung voneinander?",
+    "answers": [
+      { "text": "Damwild hat einen schwarz/weißen Wedel, Rotwild einen braunen Wedel", "isCorrect": true },
+      { "text": "Rotwild hat immer weiße Flecken auf der Decke, Damwild nicht", "isCorrect": false },
+      { "text": "Damwild hat einen schwarzen Spiegel, Rotwild einen schneeweißen", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 198,
+    "question": "Bei welcher Wildart gibt es bereits im ersten Lebensjahr bei den männlichen Stücken eine Geweihbildung?",
+    "answers": [
+      { "text": "Beim Rotwild", "isCorrect": false },
+      { "text": "Beim Rehwild", "isCorrect": true },
+      { "text": "Beim Damwild", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 199,
+    "question": "Wann wirft der Rehbock das Gehörn ab?",
+    "answers": [
+      { "text": "Februar bis März", "isCorrect": false },
+      { "text": "Juni bis August", "isCorrect": false },
+      { "text": "Oktober bis Dezember", "isCorrect": true }
+    ]
+  },
+  {
+    "id": 200,
+    "question": "Ein Zahn im Milchgebiss des Rehwildes ist dreiteilig. Im Dauergebiss ist er zweiteilig. Welcher Zahn ist das?",
+    "answers": [
+      { "text": "Der 1. Schneidezahn", "isCorrect": false },
+      { "text": "Der 2. Molar", "isCorrect": false },
+      { "text": "Der 3. Prämolar", "isCorrect": true }
+    ]
+  },
+  {
+    "id": 201,
+    "question": "Wie viele Zähne hat das vollständige Gebiss des Rehwildes?",
+    "answers": [
+      { "text": "32", "isCorrect": false },
+      { "text": "34", "isCorrect": true },
+      { "text": "36", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 202,
+    "question": "Wie nennt man die weiblichen Rehe nach Alter?",
+    "answers": [
+      { "text": "Schmalreh, Ricken", "isCorrect": true },
+      { "text": "Kalb, Tier", "isCorrect": false },
+      { "text": "Hirschkuh, Alttier", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 203,
+    "question": "Worauf ist bei der Bejagung der Schmalrehe besonders zu achten?",
+    "answers": [
+      { "text": "Auf das Alter der Stücke", "isCorrect": false },
+      { "text": "Auf das Gewicht der Stücke", "isCorrect": false },
+      { "text": "Dass keine führenden Ricken erlegt werden", "isCorrect": true }
+    ]
+  },
+  {
+    "id": 204,
+    "question": "Wie unterscheidet man beim Rehwild den Bock vom Schmalreh im ersten Winter?",
+    "answers": [
+      { "text": "Am Vorhandensein von Rosenstöcken", "isCorrect": true },
+      { "text": "An der Farbe des Haarkleides", "isCorrect": false },
+      { "text": "Am Gewicht", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 205,
+    "question": "Welche der genannten Wildarten führen im Sommer ein Kitz?",
+    "answers": [
+      { "text": "Rothirsch", "isCorrect": false },
+      { "text": "Reh", "isCorrect": true },
+      { "text": "Damwild", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 206,
+    "question": "Welche der folgenden Wildarten sind sogenannte „Schalenwildarten“?",
+    "answers": [
+      { "text": "Rotwild und Schwarzwild", "isCorrect": true },
+      { "text": "Hase und Fuchs", "isCorrect": false },
+      { "text": "Marderhund und Waschbär", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 207,
+    "question": "Welcher Zeitraum gilt beim Schwarzwild als Rauschzeit?",
+    "answers": [
+      { "text": "September/Oktober", "isCorrect": false },
+      { "text": "November/Januar", "isCorrect": true },
+      { "text": "Februar/März", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 208,
+    "question": "Wie alt ist ein Überläufer beim Schwarzwild?",
+    "answers": [
+      { "text": "1 Jahr", "isCorrect": true },
+      { "text": "2 Jahre", "isCorrect": false },
+      { "text": "3 Jahre", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 209,
+    "question": "Wie nennt man die hinteren Hauer beim Keiler?",
+    "answers": [
+      { "text": "Haken", "isCorrect": true },
+      { "text": "Klingen", "isCorrect": false },
+      { "text": "Löffel", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 210,
+    "question": "Welche Körperteile des Wildschweins sind für das Alter besonders aussagekräftig?",
+    "answers": [
+      { "text": "Backen und Eckzähne", "isCorrect": true },
+      { "text": "Ohren und Schwanz", "isCorrect": false },
+      { "text": "Schulterblatt und Rippen", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 211,
+    "question": "Wodurch unterscheidet sich der Frischling von älteren Wildschweinen?",
+    "answers": [
+      { "text": "Durch die Färbung (Streifen)", "isCorrect": true },
+      { "text": "Durch die Länge des Schwanzes", "isCorrect": false },
+      { "text": "Durch die Anzahl der Zähne", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 212,
+    "question": "Welches Gebissmerkmal kennzeichnet ein alt gewordenes Wildschwein?",
+    "answers": [
+      { "text": "Stark abgeschliffene Hauer", "isCorrect": true },
+      { "text": "Lange Eckzähne", "isCorrect": false },
+      { "text": "Milchzähne im Unterkiefer", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 213,
+    "question": "Welche Aussage trifft für den Marderhund zu?",
+    "answers": [
+      { "text": "Er ist ein Raubwild", "isCorrect": true },
+      { "text": "Er gehört zu den Nagern", "isCorrect": false },
+      { "text": "Er ist ein Wiederkäuer", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 214,
+    "question": "Wie lange dauert die Tragzeit bei der Fähe (Fuchsweibchen)?",
+    "answers": [
+      { "text": "Ca. 52 Tage", "isCorrect": true },
+      { "text": "Ca. 95 Tage", "isCorrect": false },
+      { "text": "Ca. 28 Tage", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 215,
+    "question": "Was versteht man unter dem Begriff Ranzzeit beim Fuchs?",
+    "answers": [
+      { "text": "Die Paarungszeit", "isCorrect": true },
+      { "text": "Die Zeit des Fellwechsels", "isCorrect": false },
+      { "text": "Die Aufzuchtzeit der Jungen", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 216,
+    "question": "Welche Aussage zum Dachs ist korrekt?",
+    "answers": [
+      { "text": "Er hält Winterruhe", "isCorrect": true },
+      { "text": "Er ist ein reiner Pflanzenfresser", "isCorrect": false },
+      { "text": "Er lebt als Einzelgänger", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 217,
+    "question": "Zu welcher Familie gehört der Marderhund?",
+    "answers": [
+      { "text": "Hundeartige", "isCorrect": true },
+      { "text": "Marderartige", "isCorrect": false },
+      { "text": "Katzenartige", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 218,
+    "question": "Welche Merkmale kennzeichnen das Hermelin im Winter?",
+    "answers": [
+      { "text": "Weißes Fell und schwarze Schwanzspitze", "isCorrect": true },
+      { "text": "Braunes Fell und weiße Schwanzspitze", "isCorrect": false },
+      { "text": "Graues Fell und schwarze Ohrspitzen", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 219,
+    "question": "Welche Aussagen zum Steinmarder sind korrekt?",
+    "answers": [
+      { "text": "Er besitzt eine weiße Kehlzeichnung", "isCorrect": true },
+      { "text": "Er hält Winterschlaf", "isCorrect": false },
+      { "text": "Er ist Pflanzenfresser", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 220,
+    "question": "Was ist typisch für das Wildkaninchen?",
+    "answers": [
+      { "text": "Baut ein System von Erdbauen", "isCorrect": true },
+      { "text": "Lebt als Einzelgänger", "isCorrect": false },
+      { "text": "Lebt im Wald", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 221,
+    "question": "Was unterscheidet den Feldhasen vom Wildkaninchen?",
+    "answers": [
+      { "text": "Feldhasen leben offen, Kaninchen graben Baue", "isCorrect": true },
+      { "text": "Beide leben ausschließlich im Wald", "isCorrect": false },
+      { "text": "Beide bauen Baue", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 222,
+    "question": "Wie oft setzt die Kaninchenhäsin jährlich?",
+    "answers": [
+      { "text": "Ein- bis zweimal", "isCorrect": false },
+      { "text": "Vier- bis sechsmal", "isCorrect": true },
+      { "text": "Sechs- bis neunmal", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 223,
+    "question": "Wie nennt man die Jungen des Wildkaninchens?",
+    "answers": [
+      { "text": "Kätzchen", "isCorrect": true },
+      { "text": "Häschen", "isCorrect": false },
+      { "text": "Frischlinge", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 224,
+    "question": "Wie lange dauert die Tragzeit beim Feldhasen?",
+    "answers": [
+      { "text": "Ca. 42 Tage", "isCorrect": true },
+      { "text": "Ca. 28 Tage", "isCorrect": false },
+      { "text": "Ca. 50 Tage", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 225,
+    "question": "Welche Merkmale kennzeichnen den Iltis?",
+    "answers": [
+      { "text": "Dunkle Gesichtsmaske, weißer Nasenrücken", "isCorrect": true },
+      { "text": "Schwarzer Rücken, weiße Schwanzspitze", "isCorrect": false },
+      { "text": "Braune Ohrenspitzen", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 226,
+    "question": "An welchem Merkmal kann man das Hermelin gut vom Mauswiesel unterscheiden?",
+    "answers": [
+      { "text": "Am weißen Rücken", "isCorrect": false },
+      { "text": "An der schwarzen Unterseite", "isCorrect": false },
+      { "text": "An der schwarzen Schwanzspitze", "isCorrect": true }
+    ]
+  },
+  {
+    "id": 227,
+    "question": "Was ist typisch für den Dachs?",
+    "answers": [
+      { "text": "Schwarz-weiße Gesichtsmaske", "isCorrect": true },
+      { "text": "Lebt auf Bäumen", "isCorrect": false },
+      { "text": "Hält Winterschlaf", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 228,
+    "question": "Was unterscheidet den Marderhund vom Fuchs?",
+    "answers": [
+      { "text": "Der Marderhund hält Winterruhe", "isCorrect": true },
+      { "text": "Beide leben auf Bäumen", "isCorrect": false },
+      { "text": "Beide gehören zu den Katzenartigen", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 229,
+    "question": "Welcher dieser Marder ist nachtaktiv und hat einen buschigen Schwanz?",
+    "answers": [
+      { "text": "Baummarder", "isCorrect": true },
+      { "text": "Steinmarder", "isCorrect": false },
+      { "text": "Iltis", "isCorrect": false }
+    ]
+  },
+  {
+    "id": 230,
+    "question": "Welche Aussage über die Hauskatze trifft zu?",
+    "answers": [
+      { "text": "Ist Einzelgänger", "isCorrect": true },
+      { "text": "Lebt in Rudeln", "isCorrect": false },
+      { "text": "Hält Winterschlaf", "isCorrect": false }
+    ]
+  }
+]
