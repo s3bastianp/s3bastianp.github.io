@@ -38,8 +38,9 @@ function jaccardSimilarity(a, b) {
   const similarity = intersection.size / union.size;
   
   // Ergebnis ab 70% Übereinstimmung
-  console.log(result);
+  
   const result = similarity >= 0.7;
+  console.log(result);
   return result
 }
 
