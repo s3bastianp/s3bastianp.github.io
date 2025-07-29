@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+console.log("Quiz-App geladen.");
+
 // ---------- Hilfsfunktionen ----------
 function shuffleArray(array) {
   let arr = array.slice();
@@ -7,6 +9,7 @@ function shuffleArray(array) {
     let j = Math.floor(Math.random() * (i + 1));
     [arr[i], arr[j]] = [arr[j], arr[i]];
   }
+  console.log("Antworten/Fragen neu gemischt:", arr);
   return arr;
 }
 
@@ -16,18 +19,22 @@ async function getSimilarity(userText, correctText) {
     { text: userText, language: "de" },
     { text: correctText, language: "de" }
   ];
+  console.log("Sende an /api/semantic-compare:", data);
   const response = await fetch("https://173eb243-d3b9-47b6-869d-6703c8cd9e79-00-1a6pqjeggyha3.kirk.replit.dev/api/semantic-compare", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
   });
+  console.log("HTTP-Status der API:", response.status);
   if (!response.ok) throw new Error("API Fehler: " + response.status);
   const json = await response.json();
+  console.log("API-Antwort:", json);
   if (typeof json.similarity !== "number") throw new Error("Fehlerhafte API-Antwort");
   return json.similarity;
 }
 
 // ---------- Quiz-Logik ----------
+let fullQuizData = [];
 let quizData = [];
 let current = 0;
 let userAnswers = [];
@@ -41,11 +48,56 @@ function setTheme(dark) {
   document.documentElement.setAttribute('data-theme', dark ? 'dark' : '');
   darkToggle.textContent = dark ? '☀️' : '🌙';
   localStorage.setItem('quizapp_dark', dark ? '1' : '0');
+  console.log("Theme gewechselt:", dark ? "dark" : "light");
 }
 darkToggle.onclick = () => setTheme(document.documentElement.getAttribute('data-theme') !== 'dark');
 if (localStorage.getItem('quizapp_dark') === '1'
     || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
   setTheme(true);
+}
+
+// Initiales Auswahlmenü für Anzahl der Fragen
+function showStartScreen() {
+  let quizDiv = document.getElementById('quiz');
+  let max = fullQuizData.length;
+  let defaultNum = Math.min(10, max);
+  let selectOptions = '';
+  for (let i = 3; i <= max; i++) {
+    selectOptions += `<option value="${i}" ${i===defaultNum?'selected':''}>${i}</option>`;
+  }
+  quizDiv.innerHTML = `
+    <div class="quiz-start">
+      <h2>Quiz starten</h2>
+      <label>Wie viele Fragen möchtest du?</label><br>
+      <select id="numQuestionsSelect">${selectOptions}</select>
+      <br><br>
+      <button id="startQuizBtn">Start</button>
+    </div>
+  `;
+  document.getElementById('quiz-progress').textContent = "";
+  document.getElementById('progressbar-inner').style.width = "0%";
+  document.getElementById('okBtn').style.display = 'none';
+  document.getElementById('nextBtn').style.display = 'none';
+  document.getElementById('downloadLog').style.display = 'none';
+  document.getElementById('restartBtn').style.display = 'none';
+  document.getElementById('feedback').textContent = "";
+  document.getElementById('result').textContent = "";
+
+  document.getElementById('startQuizBtn').onclick = () => {
+    let n = parseInt(document.getElementById('numQuestionsSelect').value, 10);
+    startQuizWithNQuestions(n);
+  };
+  console.log("Startscreen angezeigt, max Fragen:", max);
+}
+
+function startQuizWithNQuestions(n) {
+  // Fragen neu mischen und auf n begrenzen
+  quizData = shuffleArray(fullQuizData).slice(0, n);
+  current = 0;
+  userAnswers = [];
+  quizLoaded = true;
+  console.log(`Quiz startet mit ${n} Fragen.`);
+  showQuestion();
 }
 
 // Anzeige der aktuellen Frage
@@ -54,6 +106,7 @@ function showQuestion() {
   const quiz = document.getElementById('quiz');
   const q = quizData[current];
   hasAnswered = false;
+  console.log(`Zeige Frage ${current+1}:`, q);
 
   // --- Erkennung: Freitext-Frage?
   const isFreeText = q.answers.length === 1;
@@ -108,6 +161,7 @@ function showQuestion() {
   if (isFreeText) {
     document.getElementById('freeTextInput').addEventListener('input', function () {
       document.getElementById('okBtn').disabled = this.value.trim().length < 1;
+      console.log("User tippt Freitext:", this.value);
     });
   } else {
     document.querySelectorAll('input[name="answer"]').forEach(input => {
@@ -116,6 +170,7 @@ function showQuestion() {
         document.getElementById('okBtn').disabled = false;
         document.querySelectorAll('.answer').forEach(label => label.classList.remove('selected'));
         if (input.checked) input.parentElement.classList.add('selected');
+        console.log("User hat Multiple-Choice ausgewählt:", input.value, input.nextElementSibling.textContent);
       });
     });
   }
@@ -133,17 +188,20 @@ document.getElementById('okBtn').addEventListener('click', () => {
     const userInput = document.getElementById('freeTextInput').value.trim();
     document.getElementById('okBtn').disabled = true;
     document.getElementById('okBtn').textContent = "Prüfe...";
+    console.log("Freitext-Antwort wird geprüft:", { userInput, freeTextAnswer });
 
     // Normalisierung für exakten Vergleich (optional)
     const userNorm = userInput.trim().toLowerCase();
     const correctNorm = freeTextAnswer.trim().toLowerCase();
     const isExactlyEqual = userNorm === correctNorm;
+    if (isExactlyEqual) console.log("Exakte Übereinstimmung erkannt.");
 
     // API-Request für semantischen Vergleich
     getSimilarity(userInput, freeTextAnswer)
     .then(similarity => {
       // Schwellenwert ggf. anpassen!
       const isCorrect = isExactlyEqual || similarity >= 0.7;
+      console.log("Similarity von API:", similarity, "→ als korrekt gewertet?", isCorrect);
 
       userAnswers.push({
         id: q.id,
@@ -153,6 +211,7 @@ document.getElementById('okBtn').addEventListener('click', () => {
         correctAnswer: freeTextAnswer,
         similarity: similarity
       });
+      console.log("Aktuelle Antwort gespeichert:", userAnswers[userAnswers.length-1]);
 
       const feedback = document.getElementById('feedback');
       if (isCorrect) {
@@ -169,6 +228,7 @@ document.getElementById('okBtn').addEventListener('click', () => {
       document.getElementById('okBtn').textContent = "OK";
     })
     .catch(err => {
+      console.error("Fehler bei der KI-Bewertung:", err);
       document.getElementById('feedback').textContent = "Fehler bei der KI-Bewertung: " + (err.message || err);
       document.getElementById('okBtn').disabled = false;
       document.getElementById('okBtn').textContent = "OK";
@@ -183,6 +243,11 @@ document.getElementById('okBtn').addEventListener('click', () => {
   const isCorrect = shuffledAnswers[answerIdx].isCorrect;
   const correctAnswerText = shuffledAnswers.find(a => a.isCorrect).text;
   hasAnswered = true;
+  console.log("Multiple-Choice ausgewertet:", {
+    ausgewählt: shuffledAnswers[answerIdx].text,
+    korrekt: correctAnswerText,
+    isCorrect
+  });
 
   userAnswers.push({
     id: q.id,
@@ -211,6 +276,7 @@ document.getElementById('okBtn').addEventListener('click', () => {
 document.getElementById('nextBtn').addEventListener('click', () => {
   if (!quizLoaded) return;
   current++;
+  console.log("Nächste Frage, Index:", current);
   if (current < quizData.length) {
     showQuestion();
   } else {
@@ -226,6 +292,7 @@ function showResult() {
   let correctCount = userAnswers.filter(a => a.correct).length;
   document.getElementById('result').innerHTML =
     `<div class="trophy">🏆</div>Quiz beendet!<br>Du hast <b>${correctCount}</b> von <b>${quizData.length}</b> Fragen richtig beantwortet.`;
+  console.log("Quiz beendet! Ergebnis:", correctCount, "von", quizData.length, "richtig.");
 
   document.getElementById('downloadLog').style.display = '';
   document.getElementById('restartBtn').style.display = '';
@@ -256,15 +323,14 @@ document.getElementById('downloadLog').addEventListener('click', () => {
   link.click();
 
   URL.revokeObjectURL(url);
+  console.log("Logdatei wurde erstellt und Download gestartet.");
 });
 
 // Quiz neu starten
 document.getElementById('restartBtn').addEventListener('click', () => {
   if (!quizLoaded) return;
-  quizData = shuffleArray(quizData);   // Auch die Fragen neu mischen!
-  current = 0;
-  userAnswers = [];
-  showQuestion();
+  console.log("Quiz wird neu gestartet!");
+  showStartScreen();
 });
 
 // Lade das Quiz aus externer JSON
@@ -278,12 +344,14 @@ function showLoading() {
   document.getElementById('restartBtn').style.display = 'none';
   document.getElementById('feedback').textContent = "";
   document.getElementById('result').textContent = "";
+  console.log("Quiz wird geladen…");
 }
 
 function showError(msg) {
   document.getElementById('quiz').innerHTML = '<div style="color:var(--feedback-wrong);text-align:center;padding:24px 0;">'+msg+'</div>';
   document.getElementById('quiz-progress').textContent = "";
   document.getElementById('progressbar-inner').style.width = "0%";
+  console.error("Quiz-Fehler:", msg);
 }
 
 showLoading();
@@ -295,11 +363,9 @@ fetch('q-and-a.json')
   })
   .then(data => {
     if (!Array.isArray(data) || !data[0].question || !data[0].answers) throw new Error('Ungültiges JSON-Format');
-    quizData = shuffleArray(data); // Fragen werden gemischt!
-    quizLoaded = true;
-    current = 0;
-    userAnswers = [];
-    showQuestion();
+    fullQuizData = data;
+    showStartScreen();
+    console.log("Quizdaten erfolgreich geladen:", fullQuizData);
   })
   .catch(err => {
     showError("Fehler beim Laden der Quiz-Daten: " + (err.message || err));
