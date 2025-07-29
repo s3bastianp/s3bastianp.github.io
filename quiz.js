@@ -43,6 +43,7 @@ async function getSimilarity(userText, correctText) {
   };
   const response = await fetchWithRetry(url, options, 3, 300);
   const json = await response.json();
+  console.log(json);
   if (typeof json.similarity !== "number") {
     throw new Error("Fehlerhafte API-Antwort");
   }
