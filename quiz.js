@@ -147,8 +147,8 @@ document.getElementById('okBtn').addEventListener('click', () => {
       const similarity = jaccardSimilarity(userFp, correctFp);
       // Schwellenwert: ggf. anpassen! 0.18 ist ein sinnvoller Startwert.
       const isCorrect = similarity >= 0.18;
-      console.log(userFP);
-      console.log(correctFP);
+      console.log(getFingerprint(userInput));
+      console.log(getFingerprint(freeTextAnswer));
       console.log(similarity);
       console.log(isCorrect);
       
