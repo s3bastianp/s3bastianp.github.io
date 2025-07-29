@@ -10,7 +10,7 @@ function shuffleArray(array) {
   return arr;
 }
 
-// Cortical.io Fingerprint holen, via replit nodejs proxy
+// Cortical.io Fingerprint holen, via Replit NodeJS Proxy
 async function getFingerprint(answerText) {
   const response = await fetch("https://173eb243-d3b9-47b6-869d-6703c8cd9e79-00-1a6pqjeggyha3.kirk.replit.dev/api/fingerprint", {
     method: "POST",
@@ -29,6 +29,12 @@ function jaccardSimilarity(a, b) {
     if (a[i] === 1 && b[i] === 1) intersection++;
   }
   return union === 0 ? 0 : (intersection / union);
+}
+
+// Optional: Für Vorverarbeitung/Normalisierung vor Fingerprint
+function normalizeForFingerprint(str) {
+  return str.trim().toLowerCase()
+    .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss');
 }
 
 // ---------- Quiz-Logik ----------
@@ -138,19 +144,22 @@ document.getElementById('okBtn').addEventListener('click', () => {
     document.getElementById('okBtn').disabled = true;
     document.getElementById('okBtn').textContent = "Prüfe...";
 
+    // --- Normalisierung für Vergleich ---
+    const userNorm = userInput.trim().toLowerCase()
+      .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss');
+    const correctNorm = freeTextAnswer.trim().toLowerCase()
+      .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss');
+    const isExactlyEqual = userNorm === correctNorm;
+
     // Nur hier: Beide Fingerprints holen, dann vergleichen
     Promise.all([
-      getFingerprint(userInput),
-      getFingerprint(freeTextAnswer)
+      getFingerprint(userNorm),
+      getFingerprint(correctNorm)
     ])
     .then(([userFp, correctFp]) => {
       const similarity = jaccardSimilarity(userFp, correctFp);
       // Schwellenwert: ggf. anpassen! 0.18 ist ein sinnvoller Startwert.
-      const isCorrect = similarity >= 0.18;
-      console.log(getFingerprint(userInput));
-      console.log(getFingerprint(freeTextAnswer));
-      console.log(similarity);
-      console.log(isCorrect);
+      const isCorrect = isExactlyEqual || similarity >= 0.18;
       
       userAnswers.push({
         id: q.id,
