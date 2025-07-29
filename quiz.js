@@ -56,7 +56,7 @@ if (localStorage.getItem('quizapp_dark') === '1'
   setTheme(true);
 }
 
-// Initiales Auswahlmenü für Anzahl der Fragen
+// Quiz-Start-/Auswahlseite (gleicher Look wie Fragen)
 function showStartScreen() {
   let quizDiv = document.getElementById('quiz');
   let max = fullQuizData.length;
@@ -66,12 +66,13 @@ function showStartScreen() {
     selectOptions += `<option value="${i}" ${i===defaultNum?'selected':''}>${i}</option>`;
   }
   quizDiv.innerHTML = `
-    <div class="quiz-start">
-      <h2>Quiz starten</h2>
-      <label>Wie viele Fragen möchtest du?</label><br>
-      <select id="numQuestionsSelect">${selectOptions}</select>
-      <br><br>
-      <button id="startQuizBtn">Start</button>
+    <div class="quiz-start question" style="margin-top:32px">
+      <div style="font-size:1.25em; font-weight:600; margin-bottom:12px;">Jägerausbildung MeckPomm QuizApp</div>
+      <div style="margin-bottom:12px;">
+        <label for="numQuestionsSelect" style="font-size:1.05em;">Wie viele Fragen möchtest du beantworten?</label>
+        <select id="numQuestionsSelect" class="answers" style="width:auto; font-size:1.1em; margin-left:12px;">${selectOptions}</select>
+      </div>
+      <button id="startQuizBtn" class="main-btn" style="margin-top:20px;font-size:1.08em;padding:10px 22px;">Quiz starten</button>
     </div>
   `;
   document.getElementById('quiz-progress').textContent = "";
@@ -79,19 +80,21 @@ function showStartScreen() {
   document.getElementById('okBtn').style.display = 'none';
   document.getElementById('nextBtn').style.display = 'none';
   document.getElementById('downloadLog').style.display = 'none';
-  document.getElementById('restartBtn').style.display = 'none';
   document.getElementById('feedback').textContent = "";
   document.getElementById('result').textContent = "";
+  document.getElementById('restartBtn').style.display = 'none';
 
   document.getElementById('startQuizBtn').onclick = () => {
     let n = parseInt(document.getElementById('numQuestionsSelect').value, 10);
     startQuizWithNQuestions(n);
   };
   console.log("Startscreen angezeigt, max Fragen:", max);
+  // Restart-Button oben immer anzeigen
+  document.getElementById('globalRestartBtn').style.display = "";
 }
 
+// Quiz-Start (mit N Fragen)
 function startQuizWithNQuestions(n) {
-  // Fragen neu mischen und auf n begrenzen
   quizData = shuffleArray(fullQuizData).slice(0, n);
   current = 0;
   userAnswers = [];
@@ -100,7 +103,7 @@ function startQuizWithNQuestions(n) {
   showQuestion();
 }
 
-// Anzeige der aktuellen Frage
+// Quizfrage anzeigen
 function showQuestion() {
   if (!quizLoaded) return;
   const quiz = document.getElementById('quiz');
@@ -108,7 +111,7 @@ function showQuestion() {
   hasAnswered = false;
   console.log(`Zeige Frage ${current+1}:`, q);
 
-  // --- Erkennung: Freitext-Frage?
+  // --- Freitext-Frage?
   const isFreeText = q.answers.length === 1;
   let freeTextAnswer = "";
   if (isFreeText) freeTextAnswer = q.answers[0].text;
@@ -147,7 +150,8 @@ function showQuestion() {
   document.getElementById('feedback').textContent = "";
   document.getElementById('result').textContent = "";
   document.getElementById('downloadLog').style.display = 'none';
-  document.getElementById('restartBtn').style.display = 'none';
+  document.getElementById('restartBtn').style.display = '';
+  document.getElementById('globalRestartBtn').style.display = '';
 
   // Letzte Frage? Button-Text ändern
   const nextBtnText = document.getElementById('nextBtnText');
@@ -199,7 +203,6 @@ document.getElementById('okBtn').addEventListener('click', () => {
     // API-Request für semantischen Vergleich
     getSimilarity(userInput, freeTextAnswer)
     .then(similarity => {
-      // Schwellenwert ggf. anpassen!
       const isCorrect = isExactlyEqual || similarity >= 0.7;
       console.log("Similarity von API:", similarity, "→ als korrekt gewertet?", isCorrect);
 
@@ -299,6 +302,7 @@ function showResult() {
   document.getElementById('nextBtn').style.display = 'none';
   document.getElementById('okBtn').style.display = 'none';
   document.getElementById('feedback').textContent = "";
+  document.getElementById('globalRestartBtn').style.display = '';
 }
 
 // Log-Download
@@ -326,10 +330,17 @@ document.getElementById('downloadLog').addEventListener('click', () => {
   console.log("Logdatei wurde erstellt und Download gestartet.");
 });
 
-// Quiz neu starten
+// Quiz neu starten (Button immer sichtbar)
 document.getElementById('restartBtn').addEventListener('click', () => {
-  if (!quizLoaded) return;
-  console.log("Quiz wird neu gestartet!");
+  if (!fullQuizData.length) return;
+  console.log("Quiz wird neu gestartet! (über Button)");
+  quizLoaded = false;
+  showStartScreen();
+});
+document.getElementById('globalRestartBtn').addEventListener('click', () => {
+  if (!fullQuizData.length) return;
+  console.log("Quiz wird neu gestartet! (global)");
+  quizLoaded = false;
   showStartScreen();
 });
 
@@ -344,6 +355,7 @@ function showLoading() {
   document.getElementById('restartBtn').style.display = 'none';
   document.getElementById('feedback').textContent = "";
   document.getElementById('result').textContent = "";
+  document.getElementById('globalRestartBtn').style.display = '';
   console.log("Quiz wird geladen…");
 }
 
@@ -352,6 +364,22 @@ function showError(msg) {
   document.getElementById('quiz-progress').textContent = "";
   document.getElementById('progressbar-inner').style.width = "0%";
   console.error("Quiz-Fehler:", msg);
+}
+
+// Button "globalRestartBtn" (immer sichtbar)
+if (!document.getElementById('globalRestartBtn')) {
+  let globalBtn = document.createElement('button');
+  globalBtn.id = 'globalRestartBtn';
+  globalBtn.textContent = 'Neu starten';
+  globalBtn.className = 'main-btn';
+  globalBtn.style = 'position:fixed;top:18px;right:18px;z-index:99;display:none;padding:7px 16px;font-size:1em;border-radius:12px;';
+  globalBtn.onclick = () => {
+    if (!fullQuizData.length) return;
+    quizLoaded = false;
+    console.log("Quiz wird neu gestartet! (global fixed)");
+    showStartScreen();
+  };
+  document.body.appendChild(globalBtn);
 }
 
 showLoading();
