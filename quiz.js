@@ -10,29 +10,25 @@ function shuffleArray(array) {
   return arr;
 }
 
-function normalize(text) {
-  return text
-    .toLowerCase()
-    .replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue")
-    .replace(/ß/g, "ss")
-    .replace(/[^a-z0-9]/g, "")
-    .trim();
+// Cortical.io Fingerprint holen
+async function getFingerprint(answerText) {
+  const response = await fetch("https://api.cortical.io/fp/fingerprint", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ text: answerText })
+  });
+  if (!response.ok) throw new Error("API Fehler: " + response.status);
+  return (await response.json()).representation;
 }
 
-// Levenshtein-Distanz: tolerant gegenüber Tippfehlern
-function levenshtein(a, b) {
-  const matrix = Array.from({ length: a.length + 1 }, () => []);
-  for (let i = 0; i <= a.length; i++) matrix[i][0] = i;
-  for (let j = 0; j <= b.length; j++) matrix[0][j] = j;
-  for (let i = 1; i <= a.length; i++)
-    for (let j = 1; j <= b.length; j++)
-      matrix[i][j] =
-        a[i - 1] === b[j - 1]
-          ? matrix[i - 1][j - 1]
-          : Math.min(matrix[i - 1][j] + 1,
-                     matrix[i][j - 1] + 1,
-                     matrix[i - 1][j - 1] + 1);
-  return matrix[a.length][b.length];
+// Jaccard-Ähnlichkeit von zwei Fingerprints (0...1)
+function jaccardSimilarity(a, b) {
+  let intersection = 0, union = 0;
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] === 1 || b[i] === 1) union++;
+    if (a[i] === 1 && b[i] === 1) intersection++;
+  }
+  return union === 0 ? 0 : (intersection / union);
 }
 
 // ---------- Quiz-Logik ----------
@@ -139,31 +135,47 @@ document.getElementById('okBtn').addEventListener('click', () => {
 
   if (isFreeText) {
     const userInput = document.getElementById('freeTextInput').value.trim();
-    const n1 = normalize(userInput);
-    const n2 = normalize(freeTextAnswer);
-    const isCorrect = (n1 === n2) || (levenshtein(n1, n2) <= 2);
-
-    userAnswers.push({
-      id: q.id,
-      question: q.question,
-      givenAnswer: userInput,
-      correct: isCorrect,
-      correctAnswer: freeTextAnswer
-    });
-
-    const feedback = document.getElementById('feedback');
-    if (isCorrect) {
-      feedback.innerHTML = `<span class="correct">✅ Richtig!</span><br><span>Richtige Antwort: ${freeTextAnswer}</span>`;
-    } else {
-      feedback.innerHTML = `<span class="incorrect">❌ Falsch!</span><br><span>Richtige Antwort: ${freeTextAnswer}</span>`;
-    }
-
     document.getElementById('okBtn').disabled = true;
-    document.getElementById('okBtn').style.display = 'none';
-    document.getElementById('nextBtn').disabled = false;
-    document.getElementById('nextBtn').style.display = '';
-    document.getElementById('freeTextInput').disabled = true;
-    hasAnswered = true;
+    document.getElementById('okBtn').textContent = "Prüfe...";
+
+    // Nur hier: Beide Fingerprints holen, dann vergleichen
+    Promise.all([
+      getFingerprint(userInput),
+      getFingerprint(freeTextAnswer)
+    ])
+    .then(([userFp, correctFp]) => {
+      const similarity = jaccardSimilarity(userFp, correctFp);
+      // Schwellenwert: ggf. anpassen! 0.18 ist ein sinnvoller Startwert.
+      const isCorrect = similarity >= 0.18;
+
+      userAnswers.push({
+        id: q.id,
+        question: q.question,
+        givenAnswer: userInput,
+        correct: isCorrect,
+        correctAnswer: freeTextAnswer,
+        similarity: similarity
+      });
+
+      const feedback = document.getElementById('feedback');
+      if (isCorrect) {
+        feedback.innerHTML = `<span class="correct">✅ Richtig!</span><br><span>Richtige Antwort: ${freeTextAnswer}<br><small>Ähnlichkeit: ${(similarity*100).toFixed(1)}%</small></span>`;
+      } else {
+        feedback.innerHTML = `<span class="incorrect">❌ Falsch!</span><br><span>Richtige Antwort: ${freeTextAnswer}<br><small>Ähnlichkeit: ${(similarity*100).toFixed(1)}%</small></span>`;
+      }
+
+      document.getElementById('okBtn').style.display = 'none';
+      document.getElementById('nextBtn').disabled = false;
+      document.getElementById('nextBtn').style.display = '';
+      document.getElementById('freeTextInput').disabled = true;
+      hasAnswered = true;
+      document.getElementById('okBtn').textContent = "OK";
+    })
+    .catch(err => {
+      document.getElementById('feedback').textContent = "Fehler bei der KI-Bewertung: " + err.message;
+      document.getElementById('okBtn').disabled = false;
+      document.getElementById('okBtn').textContent = "OK";
+    });
     return;
   }
 
@@ -232,7 +244,11 @@ document.getElementById('downloadLog').addEventListener('click', () => {
     log += `Frage ${idx + 1} (ID: ${a.id}): ${a.question}\n`;
     log += `Deine Antwort: ${a.givenAnswer}\n`;
     log += `Korrekt? ${a.correct ? 'JA' : 'NEIN'}\n`;
-    log += `Richtige Antwort: ${a.correctAnswer}\n\n`;
+    log += `Richtige Antwort: ${a.correctAnswer}\n`;
+    if (typeof a.similarity !== "undefined") {
+      log += `Ähnlichkeit: ${(a.similarity*100).toFixed(1)}%\n`;
+    }
+    log += `\n`;
   });
   const blob = new Blob([log], { type: 'text/plain' });
   const url = URL.createObjectURL(blob);
