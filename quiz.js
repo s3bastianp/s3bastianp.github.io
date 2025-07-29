@@ -150,13 +150,17 @@ document.getElementById('okBtn').addEventListener('click', () => {
     const correctNorm = freeTextAnswer.trim().toLowerCase()
       .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss');
     const isExactlyEqual = userNorm === correctNorm;
-
+        
     // Nur hier: Beide Fingerprints holen, dann vergleichen
     Promise.all([
       getFingerprint(userNorm),
       getFingerprint(correctNorm)
     ])
     .then(([userFp, correctFp]) => {
+
+      console.log(userFp);
+      console.log(correctFp);
+      
       const similarity = jaccardSimilarity(userFp, correctFp);
       // Schwellenwert: ggf. anpassen! 0.18 ist ein sinnvoller Startwert.
       const isCorrect = isExactlyEqual || similarity >= 0.18;
