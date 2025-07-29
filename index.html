@@ -4,38 +4,22 @@
   <meta charset="UTF-8">
   <title>Jägerausbildung MeckPomm QuizApp</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Externes CSS einbinden -->
-  <link rel="stylesheet" href="quiz.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Darkmode-Toggle (immer sichtbar) -->
-  <button id="darkToggle" title="Dark/Light Mode" style="position:fixed;bottom:20px;right:20px;">🌙</button>
-
-  <div class="quiz-app">
-
+  <div class="container" id="main-container">
+    <button class="toggle-dark" id="darkToggle" title="Dark/Light Mode">🌙</button>
     <h1>Jägerausbildung MeckPomm QuizApp</h1>
-    <div id="quiz-progress"></div>
-    <div id="progressbar">
-      <div id="progressbar-inner"></div>
-    </div>
-
-    <div id="feedback"></div>
-    <div id="result"></div>
-
-    <!-- Hier erscheinen die Fragen und Antworten -->
+    <div id="quiz-progress" class="quiz-progress"></div>
+    <div class="progressbar"><div id="progressbar-inner"></div></div>
     <div id="quiz"></div>
-
-    <!-- Steuer-Buttons: immer sichtbar, aber per JS ein-/ausgeblendet -->
-    <div id="quiz-controls">
-      <button id="okBtn" style="display:none;">OK</button>
-      <button id="nextBtn" style="display:none;"><span id="nextBtnText">Nächste Frage</span></button>
-      <button id="downloadLog" style="display:none;">Log herunterladen</button>
-      <button id="restartBtn" style="display:none;">Quiz neu starten</button>
-    </div>
+    <button id="okBtn" class="btn" disabled><span class="btn-icon">✅</span>OK</button>
+    <button id="nextBtn" class="btn" disabled style="display:none;"><span class="btn-icon">➡️</span><span id="nextBtnText">Nächste Frage</span></button>
+    <div id="feedback" class="feedback"></div>
+    <div id="result" class="result"></div>
+    <button id="downloadLog" class="btn download-btn" style="display:none;">Antwort-Log herunterladen</button>
+    <button id="restartBtn" class="btn restart-btn" style="display:none;">Quiz neu starten</button>
   </div>
-
-  <!-- Der globale Restart-Button (oben rechts) wird durch JS erzeugt -->
-
-  <script src="quiz.js"></script>
+<script src="quiz.js"></script>
 </body>
 </html>
