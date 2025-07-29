@@ -10,9 +10,9 @@ function shuffleArray(array) {
   return arr;
 }
 
-// Cortical.io Fingerprint holen
+// Cortical.io Fingerprint holen, via replit nodejs proxy
 async function getFingerprint(answerText) {
-  const response = await fetch("https://api.cortical.io/fp/fingerprint", {
+  const response = await fetch("https://173eb243-d3b9-47b6-869d-6703c8cd9e79-00-1a6pqjeggyha3.kirk.replit.dev/api/fingerprint", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ text: answerText })
