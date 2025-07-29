@@ -1,27 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Jägerausbildung MeckPomm QuizApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Externes CSS einbinden -->
+  <link rel="stylesheet" href="quiz.css">
+</head>
 <body>
-  <!-- Nur globale Buttons -->
-  <!-- (globalRestartBtn wird per JS erzeugt, darkToggle ist optional) -->
+  <!-- Darkmode-Toggle (immer sichtbar) -->
   <button id="darkToggle" title="Dark/Light Mode" style="position:fixed;bottom:20px;right:20px;">🌙</button>
 
-  <!-- Quiz-Anzeige-Container -->
-  <div id="quiz-area">
+  <div class="quiz-app">
+
+    <h1>Jägerausbildung MeckPomm QuizApp</h1>
+    <div id="quiz-progress"></div>
+    <div id="progressbar">
+      <div id="progressbar-inner"></div>
+    </div>
+
+    <div id="feedback"></div>
+    <div id="result"></div>
+
+    <!-- Hier erscheinen die Fragen und Antworten -->
     <div id="quiz"></div>
 
-    <!-- Steuer-Buttons innerhalb des Quiz-Containers -->
+    <!-- Steuer-Buttons: immer sichtbar, aber per JS ein-/ausgeblendet -->
     <div id="quiz-controls">
       <button id="okBtn" style="display:none;">OK</button>
       <button id="nextBtn" style="display:none;"><span id="nextBtnText">Nächste Frage</span></button>
       <button id="downloadLog" style="display:none;">Log herunterladen</button>
       <button id="restartBtn" style="display:none;">Quiz neu starten</button>
     </div>
-
-    <div id="quiz-progress"></div>
-    <div id="progressbar">
-      <div id="progressbar-inner"></div>
-    </div>
-    <div id="feedback"></div>
-    <div id="result"></div>
   </div>
+
+  <!-- Der globale Restart-Button (oben rechts) wird durch JS erzeugt -->
 
   <script src="quiz.js"></script>
 </body>
+</html>
