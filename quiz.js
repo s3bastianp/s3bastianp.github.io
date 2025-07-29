@@ -35,6 +35,7 @@ async function getSimilarity(userText, correctText) {
     { text: userText, language: "de" },
     { text: correctText, language: "de" }
   ];
+  console.log(data);
   const url = "https://173eb243-d3b9-47b6-869d-6703c8cd9e79-00-1a6pqjeggyha3.kirk.replit.dev/api/semantic-compare";
   const options = {
     method: "POST",
