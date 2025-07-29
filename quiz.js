@@ -23,12 +23,24 @@ async function getFingerprint(answerText) {
 
 // Jaccard-Ähnlichkeit von zwei Fingerprints (0...1)
 function jaccardSimilarity(a, b) {
-  let intersection = 0, union = 0;
-  for (let i = 0; i < a.length; i++) {
-    if (a[i] === 1 || b[i] === 1) union++;
-    if (a[i] === 1 && b[i] === 1) intersection++;
-  }
-  return union === 0 ? 0 : (intersection / union);
+  
+  // In Sets umwandeln
+  const set1 = new Set(a);
+  const set2 = new Set(b);
+  
+  // Schnittmenge berechnen
+  const intersection = new Set([...set1].filter(x => set2.has(x)));
+  
+  // Vereinigungsmenge berechnen
+  const union = new Set([...set1, ...set2]);
+  
+  // Jaccard-Index berechnen
+  const similarity = intersection.size / union.size;
+  
+  // Ergebnis ab 70% Übereinstimmung
+  console.log(result);
+  const result = similarity >= 0.7;
+  return result
 }
 
 // Optional: Für Vorverarbeitung/Normalisierung vor Fingerprint
