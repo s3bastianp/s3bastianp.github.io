@@ -13,23 +13,39 @@ function shuffleArray(array) {
   return arr;
 }
 
+// Hilfsfunktion: Fetch mit Retry
+async function fetchWithRetry(url, options, retries = 3, backoff = 300) {
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) throw new Error(`Status ${response.status}`);
+    return response;
+  } catch (err) {
+    if (retries > 0) {
+      console.warn(`Fetch fehlgeschlagen (${err.message}), neuer Versuch in ${backoff} ms…`);
+      await new Promise(r => setTimeout(r, backoff));
+      return fetchWithRetry(url, options, retries - 1, backoff * 2);
+    }
+    throw err;  // nach letzten Versuch weiterleiten
+  }
+}
+  
 // POST beide Texte an Semantic-Compare-API, liefere similarity (0...1)
 async function getSimilarity(userText, correctText) {
   const data = [
     { text: userText, language: "de" },
     { text: correctText, language: "de" }
   ];
-  console.log("Sende an /api/semantic-compare:", data);
-  const response = await fetch("https://173eb243-d3b9-47b6-869d-6703c8cd9e79-00-1a6pqjeggyha3.kirk.replit.dev/api/semantic-compare", {
+  const url = "https://173eb243-d3b9-47b6-869d-6703c8cd9e79-00-1a6pqjeggyha3.kirk.replit.dev/api/semantic-compare";
+  const options = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
-  });
-  console.log("HTTP-Status der API:", response.status);
-  if (!response.ok) throw new Error("API Fehler: " + response.status);
+  };
+  const response = await fetchWithRetry(url, options, 3, 300);
   const json = await response.json();
-  console.log("API-Antwort:", json);
-  if (typeof json.similarity !== "number") throw new Error("Fehlerhafte API-Antwort");
+  if (typeof json.similarity !== "number") {
+    throw new Error("Fehlerhafte API-Antwort");
+  }
   return json.similarity;
 }
 
