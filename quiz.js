@@ -10,44 +10,17 @@ function shuffleArray(array) {
   return arr;
 }
 
-// Cortical.io Fingerprint holen, via Replit NodeJS Proxy
-async function getFingerprint(answerText) {
-  const response = await fetch("https://173eb243-d3b9-47b6-869d-6703c8cd9e79-00-1a6pqjeggyha3.kirk.replit.dev/api/fingerprint", {
+// POST beide Texte an Semantic-Compare-API, liefere similarity (0...1)
+async function getSimilarity(userText, correctText) {
+  const response = await fetch("https://173eb243-d3b9-47b6-869d-6703c8cd9e79-00-1a6pqjeggyha3.kirk.replit.dev/api/semantic-compare", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ text: answerText })
+    body: JSON.stringify({ userAnswer: userText, correctAnswer: correctText })
   });
   if (!response.ok) throw new Error("API Fehler: " + response.status);
-  return (await response.json()).representation;
-}
-
-// Jaccard-Ähnlichkeit von zwei Fingerprints (0...1)
-function jaccardSimilarity(a, b) {
-  
-  // In Sets umwandeln
-  const set1 = new Set(a);
-  const set2 = new Set(b);
-  
-  // Schnittmenge berechnen
-  const intersection = new Set([...set1].filter(x => set2.has(x)));
-  
-  // Vereinigungsmenge berechnen
-  const union = new Set([...set1, ...set2]);
-  
-  // Jaccard-Index berechnen
-  const similarity = intersection.size / union.size;
-  
-  // Ergebnis ab 70% Übereinstimmung
-  
-  const result = similarity >= 0.7;
-  console.log(result);
-  return result
-}
-
-// Optional: Für Vorverarbeitung/Normalisierung vor Fingerprint
-function normalizeForFingerprint(str) {
-  return str.trim().toLowerCase()
-    .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss');
+  const json = await response.json();
+  if (typeof json.similarity !== "number") throw new Error("Fehlerhafte API-Antwort");
+  return json.similarity;
 }
 
 // ---------- Quiz-Logik ----------
@@ -157,27 +130,17 @@ document.getElementById('okBtn').addEventListener('click', () => {
     document.getElementById('okBtn').disabled = true;
     document.getElementById('okBtn').textContent = "Prüfe...";
 
-    // --- Normalisierung für Vergleich ---
-    const userNorm = userInput.trim().toLowerCase()
-      .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss');
-    const correctNorm = freeTextAnswer.trim().toLowerCase()
-      .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss');
+    // Normalisierung für exakten Vergleich (optional)
+    const userNorm = userInput.trim().toLowerCase();
+    const correctNorm = freeTextAnswer.trim().toLowerCase();
     const isExactlyEqual = userNorm === correctNorm;
-        
-    // Nur hier: Beide Fingerprints holen, dann vergleichen
-    Promise.all([
-      getFingerprint(userNorm),
-      getFingerprint(correctNorm)
-    ])
-    .then(([userFp, correctFp]) => {
 
-      console.log(userFp);
-      console.log(correctFp);
-      
-      const similarity = jaccardSimilarity(userFp, correctFp);
-      // Schwellenwert: ggf. anpassen! 0.18 ist ein sinnvoller Startwert.
+    // API-Request für semantischen Vergleich
+    getSimilarity(userInput, freeTextAnswer)
+    .then(similarity => {
+      // Schwellenwert ggf. anpassen! 0.18 ist Standard.
       const isCorrect = isExactlyEqual || similarity >= 0.18;
-      
+
       userAnswers.push({
         id: q.id,
         question: q.question,
@@ -202,7 +165,7 @@ document.getElementById('okBtn').addEventListener('click', () => {
       document.getElementById('okBtn').textContent = "OK";
     })
     .catch(err => {
-      document.getElementById('feedback').textContent = "Fehler bei der KI-Bewertung: " + err.message;
+      document.getElementById('feedback').textContent = "Fehler bei der KI-Bewertung: " + (err.message || err);
       document.getElementById('okBtn').disabled = false;
       document.getElementById('okBtn').textContent = "OK";
     });
