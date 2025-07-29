@@ -12,10 +12,14 @@ function shuffleArray(array) {
 
 // POST beide Texte an Semantic-Compare-API, liefere similarity (0...1)
 async function getSimilarity(userText, correctText) {
+  const data = [
+    { text: userText, language: "de" },
+    { text: correctText, language: "de" }
+  ];
   const response = await fetch("https://173eb243-d3b9-47b6-869d-6703c8cd9e79-00-1a6pqjeggyha3.kirk.replit.dev/api/semantic-compare", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ userAnswer: userText, correctAnswer: correctText })
+    body: JSON.stringify(data)
   });
   if (!response.ok) throw new Error("API Fehler: " + response.status);
   const json = await response.json();
@@ -138,8 +142,8 @@ document.getElementById('okBtn').addEventListener('click', () => {
     // API-Request für semantischen Vergleich
     getSimilarity(userInput, freeTextAnswer)
     .then(similarity => {
-      // Schwellenwert ggf. anpassen! 0.18 ist Standard.
-      const isCorrect = isExactlyEqual || similarity >= 0.18;
+      // Schwellenwert ggf. anpassen!
+      const isCorrect = isExactlyEqual || similarity >= 0.7;
 
       userAnswers.push({
         id: q.id,
