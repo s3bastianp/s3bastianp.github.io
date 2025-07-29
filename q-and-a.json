@@ -511,5 +511,405 @@
       { "text": "Lebt in Rudeln", "isCorrect": false },
       { "text": "Hält Winterschlaf", "isCorrect": false }
     ]
+  },
+    {
+    "id": 11,
+    "question": "Wodurch sind die Rosen am Geweih gekennzeichnet?",
+    "answers": [
+      {
+        "text": "Sie sind Verdickungen an der Geweihbasis und dienen der Befestigung am Schädel.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "question": "Wann beginnt die Geweihbildung beim Rotwild?",
+    "answers": [
+      {
+        "text": "Ab dem 1. Lebensjahr.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "question": "Wie alt ist ein Rothirsch mit Spießern?",
+    "answers": [
+      {
+        "text": "1 Jahr.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "question": "Wie nennt man beim Rotwild das männliche Jungtier im ersten Lebensjahr?",
+    "answers": [
+      {
+        "text": "Hirschkalb.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "question": "Welche Rolle spielt das Kahlwild im Rotwildrudel?",
+    "answers": [
+      {
+        "text": "Kahlwild sind die weiblichen Tiere ohne Kalb und die Leittiere.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "question": "Was versteht man unter der Feistzeit beim Rotwild?",
+    "answers": [
+      {
+        "text": "Zeit des stärksten Körpergewichts und Fetteinlagerung vor der Brunft.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "question": "Wie lange dauert die Tragezeit beim Rotwild?",
+    "answers": [
+      {
+        "text": "Etwa 8 Monate.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "question": "Was ist das Brunftschrei beim Rotwild?",
+    "answers": [
+      {
+        "text": "Der Brunftschrei dient zur Revierabgrenzung und zum Anlocken von Kahlwild.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "question": "Welche Bedeutung haben Beihirsche in der Rotwildbrunft?",
+    "answers": [
+      {
+        "text": "Sie halten sich am Brunftrudel auf, können aber den Platzhirsch herausfordern.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "question": "Welche natürliche Todesursache ist für Rotwild typisch?",
+    "answers": [
+      {
+        "text": "Hungertod im Winter.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "question": "Welche Aufgaben übernimmt der Platzhirsch während der Brunft?",
+    "answers": [
+      {
+        "text": "Er verteidigt das Brunftrudel und deckt die brunftigen Tiere.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "question": "Wie erfolgt der Geweihabwurf beim Rotwild?",
+    "answers": [
+      {
+        "text": "Das Geweih wird jährlich abgeworfen und erneuert.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "question": "Was ist ein „ungerader Achter“ beim Rotwild?",
+    "answers": [
+      {
+        "text": "Ein Geweih mit 7 oder 9 Enden, also ungerade Anzahl.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "question": "Welchen Einfluss hat der Lebensraum auf die Körpergröße des Rotwilds?",
+    "answers": [
+      {
+        "text": "In großen, nahrungsreichen Lebensräumen sind die Tiere meist größer.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "question": "Was sind Kahlwildrudel?",
+    "answers": [
+      {
+        "text": "Gruppen weiblicher Tiere mit oder ohne Nachwuchs.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "question": "Welche Baumarten schält Rotwild besonders gerne?",
+    "answers": [
+      {
+        "text": "Weide, Pappel, Eberesche.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "question": "Welche Geweihform ist beim Rothirsch unerwünscht?",
+    "answers": [
+      {
+        "text": "Gabelgeweih auf beiden Stangen.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "question": "Wie nennt man das weibliche Rotwild im ersten Lebensjahr?",
+    "answers": [
+      {
+        "text": "Wildkalb.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "question": "Welche Funktion erfüllt die Brunftmähne beim Rothirsch?",
+    "answers": [
+      {
+        "text": "Sie schützt bei Rangkämpfen.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "question": "Wie erkennt man das Alter eines Rothirsches am Geweih?",
+    "answers": [
+      {
+        "text": "An der Ausprägung von Sprossen und Krone.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "question": "Wann werden Rothirschkälber geboren?",
+    "answers": [
+      {
+        "text": "Meist im Mai/Juni.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "question": "Was versteht man unter einem 'Platzhirsch'?",
+    "answers": [
+      {
+        "text": "Den stärksten, verteidigenden Hirsch im Brunftrudel.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "question": "Wie erkennt man einen Schmalspießer beim Rothirsch?",
+    "answers": [
+      {
+        "text": "Jungtier mit einfachen, langen Spießen.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "question": "Welche natürlichen Feinde hat das Rotwild in Mitteleuropa?",
+    "answers": [
+      {
+        "text": "Wolf und Luchs.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "question": "Wie nennt man beim Rotwild die erste Stufe des Geweihwachstums?",
+    "answers": [
+      {
+        "text": "Spießer.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "question": "Wofür steht der Begriff 'Feistzeit' beim Rotwild?",
+    "answers": [
+      {
+        "text": "Zeit des Fettansatzes im Sommer.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "question": "Was ist die 'Brunft' bei Rotwild?",
+    "answers": [
+      {
+        "text": "Paarungszeit im Spätsommer/Herbst.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "question": "Wie nennt man das Geweih, wenn alle Sprossen voll entwickelt sind?",
+    "answers": [
+      {
+        "text": "Krone.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "question": "Welche Funktion hat der Spiegel beim Rotwild?",
+    "answers": [
+      {
+        "text": "Als optisches Signal bei Flucht.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "question": "Was versteht man unter einem 'Kahlwildrudel'?",
+    "answers": [
+      {
+        "text": "Weibliche Tiere und Kälber ohne Hirsche.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "question": "Wie heißt das männliche Rotwild im zweiten Lebensjahr?",
+    "answers": [
+      {
+        "text": "Hirsch vom 2. Kopf.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "question": "Welche Geweihform ist für starke Rothirsche typisch?",
+    "answers": [
+      {
+        "text": "Krone mit vielen Enden.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "question": "Was ist ein 'ungerader Zehner' beim Rotwild?",
+    "answers": [
+      {
+        "text": "Geweih mit 9 oder 11 Enden.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "question": "Wie nennt man den Haarwechsel beim Rotwild?",
+    "answers": [
+      {
+        "text": "Fellwechsel.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "question": "Was ist ein 'Beihirsch'?",
+    "answers": [
+      {
+        "text": "Weniger starker Hirsch neben dem Platzhirsch.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "question": "Was bezeichnet man als 'Brunftrudel'?",
+    "answers": [
+      {
+        "text": "Gruppe während der Paarungszeit, angeführt vom Platzhirsch.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "question": "Wie nennt man die weiblichen Tiere beim Rotwild im zweiten Lebensjahr?",
+    "answers": [
+      {
+        "text": "Schmaltiere.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "question": "Wozu dient der Geweihabwurf beim Rothirsch?",
+    "answers": [
+      {
+        "text": "Ermöglicht jährliche Regeneration und Wachstum eines neuen Geweihs.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "question": "Wann beginnt die Geweihbildung beim Rotwild nach dem Abwurf?",
+    "answers": [
+      {
+        "text": "Kurz nach dem Abwurf im Frühjahr.",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "question": "Welche Aufgabe hat die Brunftmähne?",
+    "answers": [
+      {
+        "text": "Schutz des Halses bei Kämpfen.",
+        "isCorrect": true
+      }
+    ]
   }
 ]
